@@ -18,11 +18,11 @@ mongoose
     console.log("Connection failed!");
   });
 
-// app.use(cors());
+app.use(cors());
 
 var oneYear = 1 * 365 * 24 * 60 * 60 * 1000;
 app.use(express.static(__dirname + "/public", { maxAge: oneYear }));
-// app.set("trust proxy", true);
+app.set("trust proxy", true);
 
 app.get("/", (req, res) => {
   res.send("OK");
@@ -62,5 +62,5 @@ app.get("/api/v1/nearestpatient", (req, res, next) => {
 });
 
 app.listen(process.argv[2] || 3000 || process.env.PORT, () => {
-  console.log("server running on port 3000");
+  console.log("are you ready");
 });
