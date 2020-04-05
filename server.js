@@ -61,6 +61,6 @@ app.get("/api/v1/nearestpatient", (req, res, next) => {
   }
 });
 
-app.listen(3000 || process.env.PORT, () => {
+app.listen(process.argv[2] || 3000, () => {
   console.log("server running on port 3000");
 });
