@@ -2,8 +2,10 @@ var express = require("express");
 var fetch = require("node-fetch");
 var url = require("url");
 var mongoose = require("mongoose");
-var cors = require("cors");
+// var cors = require("cors");
 var UserLocation = require("./models/locations");
+
+var app = express();
 mongoose
   .connect(
     "mongodb://suraj:suraj@fmc-shard-00-00-fsipp.mongodb.net:27017,fmc-shard-00-01-fsipp.mongodb.net:27017,fmc-shard-00-02-fsipp.mongodb.net:27017/mediport?ssl=true&replicaSet=fmc-shard-0&authSource=admin&retryWrites=true&w=majority",
@@ -16,13 +18,11 @@ mongoose
     console.log("Connection failed!");
   });
 
-var app = express();
-
-app.use(cors());
+// app.use(cors());
 
 var oneYear = 1 * 365 * 24 * 60 * 60 * 1000;
 app.use(express.static(__dirname + "/public", { maxAge: oneYear }));
-app.set("trust proxy", true);
+// app.set("trust proxy", true);
 
 app.get("/", (req, res) => {
   res.send("OK");
