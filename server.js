@@ -2,7 +2,9 @@ var express = require("express");
 var fetch = require("node-fetch");
 var url = require("url");
 var mongoose = require("mongoose");
-// var cors = require("cors");
+var cors = require("cors");
+var helmet = require("helmet");
+var morgan = require("morgan");
 var UserLocation = require("./models/locations");
 
 var app = express();
@@ -19,17 +21,16 @@ mongoose
   });
 
 app.use(cors());
-
-var oneYear = 1 * 365 * 24 * 60 * 60 * 1000;
-app.use(express.static(__dirname + "/public", { maxAge: oneYear }));
+app.use(helmet());
+app.disable("x-powered-by");
 app.set("trust proxy", true);
-
+app.use(morgan("dev"));
 app.get("/", (req, res) => {
   res.send("OK");
 });
 
 // How call - http://localhost/api/v1/nearestpatient?latitude=&longitude
-app.get("/api/v1/nearestpatient", (req, res, next) => {
+app.get("/v1/nearestpatient", (req, res, next) => {
   let url_parts = url.parse(req.url, true),
     responseData = url_parts.query;
   if (responseData.latitude && responseData.longitude) {
