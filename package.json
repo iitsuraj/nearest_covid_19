@@ -4,13 +4,20 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
+    "node-cron": "^2.0.3",
     "node-fetch": "^2.6.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "serve-static": "^1.14.1",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0"
