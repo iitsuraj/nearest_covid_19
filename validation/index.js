@@ -133,8 +133,8 @@ exports.articel = (req, res, next) => {
 
   req.body.tag = !isEmpty(req.body.tag) ? req.body.tag : "";
 
-  if (!Validator.isLength(req.body.heading, { min: 10, max: 60 })) {
-    errors.heading = "Heading must be between 10 and 60 characters";
+  if (!Validator.isLength(req.body.heading, { min: 10, max: 90 })) {
+    errors.heading = "Heading must be between 10 and 90 characters";
   }
 
   if (Validator.isEmpty(req.body.heading)) {

@@ -1,6 +1,7 @@
 var covidLocationTracker = require("../../../models/locations");
 var Routes = require("../../../models/routes");
 var PushSubscriber = require("../../../models/pushnotification");
+var Articles = require("../../../models/article");
 var fetch = require("node-fetch");
 var url = require("url");
 
@@ -48,7 +49,15 @@ exports.neatestpatient_km = (req, res) => {
 };
 
 exports.articles = (req, res) => {
-  res.send(req.params.topic);
+  // res.send(req.params.topic);
+  Articles.find({ tags: req.params.topic })
+    .sort({ date: -1 })
+    .limit(3)
+    .exec()
+    .then((data) => res.json(data))
+    .catch((err) => {
+      res.status(400).json({ message: "Technical error", error: err });
+    });
 };
 
 exports.push_notification_subscriber = (req, res) => {
