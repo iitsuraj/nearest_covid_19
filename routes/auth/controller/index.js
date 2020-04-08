@@ -1,6 +1,6 @@
 var User = require("../../../models/user");
 var jwt = require("jsonwebtoken");
-
+var Secrectkey = require("../../../config/secert");
 // Generate secrect key for access authrized route
 exports.login = (req, res) => {
   let errors = {};
@@ -25,7 +25,7 @@ exports.login = (req, res) => {
           name: user.name,
           email: user.email,
         };
-        jwt.sign(payload, "secretKey", function (err, token) {
+        jwt.sign(payload, Secrectkey.secretKey, function (err, token) {
           res.json({
             success: true,
             token: "bearer " + token,

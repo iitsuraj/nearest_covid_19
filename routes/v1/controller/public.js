@@ -1,5 +1,6 @@
 var covidLocationTracker = require("../../../models/locations");
 var Routes = require("../../../models/routes");
+var PushSubscriber = require("../../../models/pushnotification");
 var fetch = require("node-fetch");
 var url = require("url");
 
@@ -48,4 +49,13 @@ exports.neatestpatient_km = (req, res) => {
 
 exports.articles = (req, res) => {
   res.send(req.params.topic);
+};
+
+exports.push_notification_subscriber = (req, res) => {
+  new PushSubscriber(req.body)
+    .save()
+    .then(res.status(200))
+    .catch((err) =>
+      res.status(400).json({ message: "Techincal error", error: err })
+    );
 };
