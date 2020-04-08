@@ -48,4 +48,13 @@ router.post(
   Validator.articel,
   AuthRouteController.articles
 );
+
+router.post("/pushsubscribe", PublicController.push_notification_subscriber);
+router.post(
+  "/sendpushnotification",
+  passport.authenticate("jwt", {
+    session: false,
+  }),
+  AuthRouteController.send_push
+);
 module.exports = router;
