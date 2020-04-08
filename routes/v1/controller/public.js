@@ -63,7 +63,7 @@ exports.articles = (req, res) => {
 exports.push_notification_subscriber = (req, res) => {
   new PushSubscriber(req.body)
     .save()
-    .then(res.status(200))
+    .then(res.status(200).json({ message: "OK" }))
     .catch((err) =>
       res.status(400).json({ message: "Techincal error", error: err })
     );
