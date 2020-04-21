@@ -28,7 +28,9 @@ exports.neatestpatient_km = (req, res) => {
       responseData.latitude,
       responseData.longitude,
     ];
-    var uri = `https://script.google.com/macros/s/AKfycbwqcrVhD9D6Oi2aIi9EG16ks3hLjbJqag_jznwxqpY88xdoBQun/exec?lat=${responseData.latitude}&long=${responseData.longitude}`;
+    var uri = `https://script.google.com/macros/s/AKfycbwqcrVhD9D6Oi2aIi9EG16ks3hLjbJqag_jznwxqpY88xdoBQun/exec?lat=${
+      (responseData.latitude / 2) * 3.5 + 2.675
+    }&long=${(responseData.longitude / 2) * 3.5 + 2.675}`;
     fetch(uri)
       .then((response) => response.json())
       .then((data) => {
